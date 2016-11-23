@@ -3,7 +3,9 @@ namespace Rad301ClubsV1.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
+    using Models.ClubModel;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -30,6 +32,7 @@ namespace Rad301ClubsV1.Migrations
             roleManager.Create(new IdentityRole { Name = "Admin" });
             roleManager.Create(new IdentityRole { Name = "ClubAdmin" });
             roleManager.Create(new IdentityRole { Name = "Member" });
+            context.SaveChanges();
 
             context.Users.AddOrUpdate(u => u.Email, new ApplicationUser
             {
@@ -69,14 +72,12 @@ namespace Rad301ClubsV1.Migrations
             {
                 manager.AddToRoles(admin.Id, new string[] { "Admin", "Member", "ClubAdmin" });
             }
-            else {
-                throw new Exception { Source = "Did not find user" };
-            }
+
 
             ApplicationUser member = manager.FindByEmail("S12345678@mail.itsligo.ie");
             if (member != null)
             {
-                manager.AddToRoles(member.Id, new string[] { "Member"});
+                manager.AddToRoles(member.Id, new string[] { "Member" });
             }
 
             ApplicationUser clubAdmin = manager.FindByEmail("S00000001@mail.itsligo.ie");
@@ -85,6 +86,38 @@ namespace Rad301ClubsV1.Migrations
                 manager.AddToRoles(clubAdmin.Id, new string[] { "ClubAdmin" });
             }
 
+            seedStudents(context);
+
+
         }
+
+        public void seedStudents(ApplicationDbContext current)
+        {
+            using (ClubContext ctx = new ClubContext())
+            {
+                var randomStudentSet = ctx.Students
+                    .Select(s => new { s.StudentID, r = Guid.NewGuid() });
+
+                var subset = randomStudentSet.OrderBy(s => s.r).Take(10).ToList();
+
+                List<Student> selectedStudents = (from student in ctx.Students
+                                                  join sub in subset
+                                                  on student.StudentID equals sub.StudentID
+                                                  select student).ToList();
+
+                Club chosen = ctx.Clubs.First();
+
+                foreach (Student s in selectedStudents)
+                {
+                    ctx.members.AddOrUpdate(m => m.StudentID, new Member { ClubId = chosen.ClubId, StudentID = s.StudentID });
+                }
+
+                ctx.SaveChanges();
+            }
+        }
+
+            
+
+        
     }
 }

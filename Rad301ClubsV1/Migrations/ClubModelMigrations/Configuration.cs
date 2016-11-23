@@ -3,6 +3,7 @@ namespace Rad301ClubsV1.Migrations.ClubModelMigrations
     using CsvHelper;
     using Models.ClubModel;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.IO;
@@ -21,9 +22,48 @@ namespace Rad301ClubsV1.Migrations.ClubModelMigrations
         protected override void Seed(Rad301ClubsV1.Models.ClubModel.ClubContext context)
         {
             context.Clubs.AddOrUpdate(c => c.ClubName,
-                new Club { ClubName = "The Tiddly Winks Club", CreationDate = DateTime.Now });
+                new Club { ClubName = "The Tiddly Winks Club", CreationDate = DateTime.Now,
+                clubEvents = new List<ClubEvent>()
+                { new ClubEvent
+                    {
+                        Location = "Sligo",
+                        Venue = "Arena",
+                        StartDateTime = DateTime.Now.Subtract(new TimeSpan(5,0,0,0)),
+                        EndDateTime = DateTime.Now.Subtract(new TimeSpan(5,0,0,0))
+                    },
+                    new ClubEvent
+                    {
+                        Location = "Sligo",
+                        Venue = "Main Canteen",
+                        StartDateTime = DateTime.Now.Subtract(new TimeSpan(3,0,0,0)),
+                        EndDateTime = DateTime.Now.Subtract(new TimeSpan(3,0,0,0))
+                    },
+
+                    }
+                 });
             context.Clubs.AddOrUpdate(c => c.ClubName,
-                new Club { ClubName = "The Chess Club", CreationDate = DateTime.Now });
+                new Club
+                {
+                    ClubName = "The Chess Club",
+                    CreationDate = DateTime.Now,
+                    clubEvents = new List<ClubEvent>()
+                { new ClubEvent
+                    {
+                        Location = "Sligo",
+                        Venue = "Arena",
+                        StartDateTime = DateTime.Now.Subtract(new TimeSpan(5,0,0,0)),
+                        EndDateTime = DateTime.Now.Subtract(new TimeSpan(5,0,0,0))
+                    },
+                    new ClubEvent
+                    {
+                        Location = "Sligo",
+                        Venue = "Main Canteen",
+                        StartDateTime = DateTime.Now.Subtract(new TimeSpan(3,0,0,0)),
+                        EndDateTime = DateTime.Now.Subtract(new TimeSpan(3,0,0,0))
+                    },
+
+                    }
+                });
 
             Assembly assembly = Assembly.GetExecutingAssembly();
             string resourceName = "Rad301ClubsV1.Migrations.ClubModelMigrations.TestStudents.csv";
