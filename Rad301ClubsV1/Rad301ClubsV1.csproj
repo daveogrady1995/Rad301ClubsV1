@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ClubsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,6 +197,10 @@
     <Compile Include="Migrations\201611111008459_Initial.cs" />
     <Compile Include="Migrations\201611111008459_Initial.Designer.cs">
       <DependentUpon>201611111008459_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611300935287_Seeded Students.cs" />
+    <Compile Include="Migrations\201611300935287_Seeded Students.Designer.cs">
+      <DependentUpon>201611300935287_Seeded Students.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ClubModelMigrations\201611011805192_Initial.cs" />
     <Compile Include="Migrations\ClubModelMigrations\201611011805192_Initial.Designer.cs">
@@ -227,6 +232,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <EmbeddedResource Include="Migrations\201611111008459_Initial.resx">
       <DependentUpon>201611111008459_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300935287_Seeded Students.resx">
+      <DependentUpon>201611300935287_Seeded Students.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ClubModelMigrations\TestStudents.csv" />
     <None Include="Properties\PublishProfiles\pprad301ClubsApp - FTP.pubxml" />
@@ -296,6 +304,12 @@
     <Content Include="Views\ClubEvents\Edit.cshtml" />
     <Content Include="Views\ClubEvents\Index.cshtml" />
     <Content Include="Views\ClubEvents\_ClubEvents.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Delete.cshtml" />
+    <Content Include="Views\Members\Details.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Members\_ClubMembers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

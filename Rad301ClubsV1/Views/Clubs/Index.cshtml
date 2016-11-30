@@ -12,9 +12,11 @@
 </form>
 
 <p>
-    @*@if (User.IsInRole("Admin"))*@
-    @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("View all events", "AllClubDetails")
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("View all events", "AllClubDetails")
+    }
 </p>
 <table class="table">
     <tr>

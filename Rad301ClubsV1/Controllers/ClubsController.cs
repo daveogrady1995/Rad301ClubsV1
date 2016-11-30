@@ -11,7 +11,7 @@ using Rad301ClubsV1.Models.ClubModel;
 
 namespace Rad301ClubsV1.Controllers
 {
-    //[Authorize(Roles = "Admin,ClubAdmin")]
+    [Authorize(Roles = "Admin,ClubAdmin")]
     public class ClubsController : Controller
     {
         private ClubContext db = new ClubContext();
