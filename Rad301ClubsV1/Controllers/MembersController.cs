@@ -22,16 +22,6 @@ namespace Rad301ClubsV1.Controllers
             return View(await members.ToListAsync());
         }
 
-        public async Task<ActionResult> AllClubDetails(string ClubName = null)
-        {
-            ViewBag.cname = ClubName;
-            var fullClub = db.Clubs
-                .Include("clubMembers")
-                .Where(c => ClubName == null || c.ClubName.StartsWith(ClubName))
-                .ToListAsync();
-            return View(await fullClub);
-        }
-
         // GET: Members/Details/5
         public async Task<ActionResult> Details(int? id)
         {

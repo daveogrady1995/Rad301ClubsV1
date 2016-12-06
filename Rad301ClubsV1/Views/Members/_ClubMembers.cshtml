@@ -3,9 +3,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.club.ClubName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.student.Fname)
         </th>
         <th>
@@ -18,18 +15,15 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.club.ClubName)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.student.Fname)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.student.Sname)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.memberID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.memberID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.memberID })
             </td>
         </tr>
     }
